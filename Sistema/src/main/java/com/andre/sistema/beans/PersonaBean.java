@@ -49,6 +49,7 @@ public class PersonaBean implements Serializable {
 	 * 
 	 * public void setPersona(T0001personas persona) { this.persona = persona; }
 	 */
+	//Metodo de inicilizacion llamado despues del constructor
 	@PostConstruct
 	public void init() {
 		// persona = new T0001personas();
