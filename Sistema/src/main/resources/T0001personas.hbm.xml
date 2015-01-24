@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/01/2015 12:38:09 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.andre.sistema.domain.T0001personas" table="t0001personas" schema="public">
+        <id name="c0001codpersona" type="string">
+            <column name="c0001codpersona" length="7" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="t0003subtippersona" class="com.andre.sistema.domain.T0003subtippersona" fetch="select">
+            <column name="i0001subtippers" not-null="true">
+                <comment>Sub Tipo de Persona (Gobierno, Entidad Religiosa,etc)</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="t0006paises" class="com.andre.sistema.domain.T0006paises" fetch="select">
+            <column name="i0001idpais" not-null="true">
+                <comment>Pais de origen</comment>
+            </column>
+        </many-to-one>
+        <property name="b0001contribuyente" type="boolean">
+            <column name="b0001contribuyente" not-null="true">
+                <comment>Indica si es contribuyente o Administrado</comment>
+            </column>
+        </property>
+        <property name="c0001nombre" type="string">
+            <column name="c0001nombre" length="100" not-null="true">
+                <comment>Nombre completo</comment>
+            </column>
+        </property>
+        <property name="c0001idlugar" type="string">
+            <column name="c0001idlugar" length="9" not-null="true">
+                <comment>Codigo de lugar</comment>
+            </column>
+        </property>
+        <property name="c0001codvia" type="string">
+            <column name="c0001codvia" length="5" not-null="true">
+                <comment>Codigo de Via</comment>
+            </column>
+        </property>
+        <property name="c0001numero" type="string">
+            <column name="c0001numero" length="6">
+                <comment>Numero Municipal</comment>
+            </column>
+        </property>
+        <property name="c0001dpto" type="string">
+            <column name="c0001dpto" length="4">
+                <comment>Numero de departamento</comment>
+            </column>
+        </property>
+        <property name="c0001piso" type="string">
+            <column name="c0001piso" length="3">
+                <comment>Numero de piso</comment>
+            </column>
+        </property>
+        <property name="c0001block" type="string">
+            <column name="c0001block" length="4">
+                <comment>Numero de Block</comment>
+            </column>
+        </property>
+        <property name="c0001manzana" type="string">
+            <column name="c0001manzana" length="6">
+                <comment>Manzana</comment>
+            </column>
+        </property>
+        <property name="c0001lote" type="string">
+            <column name="c0001lote" length="6">
+                <comment>Lote</comment>
+            </column>
+        </property>
+        <property name="c0001usuario" type="string">
+            <column name="c0001usuario" length="35" not-null="true">
+                <comment>Usuario del sistema</comment>
+            </column>
+        </property>
+        <property name="d0001fecha" type="timestamp">
+            <column name="d0001fecha" length="29" not-null="true">
+                <comment>Fecha de Registro</comment>
+            </column>
+        </property>
+        <property name="c0001pc" type="string">
+            <column name="c0001pc" length="50" not-null="true">
+                <comment>Nombre de PC</comment>
+            </column>
+        </property>
+        <property name="c0001ip" type="string">
+            <column name="c0001ip" length="20" not-null="true">
+                <comment>IP</comment>
+            </column>
+        </property>
+        <property name="b0001estado" type="boolean">
+            <column name="b0001estado" not-null="true">
+                <comment>Estado</comment>
+            </column>
+        </property>
+        <property name="cusuarioMod" type="string">
+            <column name="cusuarioMod" length="35">
+                <comment>Usuario que modifica</comment>
+            </column>
+        </property>
+        <property name="cobservacion" type="string">
+            <column name="cobservacion" length="100" />
+        </property>
+        <property name="cipMod" type="string">
+            <column name="cipMod" length="20">
+                <comment>IP de la modificacion</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

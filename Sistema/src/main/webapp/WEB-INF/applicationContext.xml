@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!--Permite usar entre otras la anotación @Autowired -->
+	<context:annotation-config />
+	<!--Permite usar entre otras las anotaciones @Component y @Controller -->
+	<context:component-scan base-package="com.andre.sistema" />
+	<!-- Data Source Declaration -->
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/dbtambo"/>
+		<property name="user" value="postgres" />
+		<property name="password" value="123456" />
+		<property name="maxPoolSize" value="10" />
+		<property name="maxStatements" value="0" />
+		<property name="minPoolSize" value="5" />
+	</bean>
+	
+
+	<!-- Session Factory Declaration -->	
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>T0001personas.hbm.xml</value>
+				<value>T0002tipopersona.hbm.xml</value>
+				<value>T0003subtippersona.hbm.xml</value>
+				<value>T0006paises.hbm.xml</value>
+			</list>
+		</property>
+		 <property name="configLocation">
+            <value>classpath:hibernate.cfg.xml</value>
+        </property>
+	</bean>
+
+
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined-->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<!-- Beans Declaration -->
+	<bean id="Persona" class="com.andre.sistema.domain.T0001personas" />
+	<bean id="Pais" class="com.andre.sistema.domain.T0006paises" />
+	<bean id="SubtipoPersona" class="com.andre.sistema.domain.T0003subtippersona"/>
+	
+	<!-- Persona DAO  Beans -->
+	<bean id="PersonaDAO" class="com.andre.sistema.dao.impl.PersonaDAO">
+		<property name="sessionFactory" ref="SessionFactory"/>
+	</bean>
+	<!-- SubtipoPersona DAO Beans -->
+	<bean id="SubtipoPersonaDAO" class="com.andre.sistema.dao.impl.SubtipoPersonaDAO" >
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<!-- Pais DAO Beans -->
+	<bean id="PaisDAO" class="com.andre.sistema.dao.impl.PaisDAO">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+	</bean>
+	
+	<!--Persona Service Beans -->
+	<bean id="PersonaService" class="com.andre.sistema.service.impl.PersonaService">
+		<property name="personaDAO" ref="PersonaDAO"/>
+	</bean>
+	
+	<!-- Pais Service Beans -->
+ 	<bean id="PaisService" class="com.andre.sistema.service.impl.PaisService">
+ 		<property name="paisDAO" ref="PaisDAO"/>
+ 	</bean>
+ 	<!-- SubtipoPersona Service -->
+ 	<bean id="SubtipoPersonaService" class="com.andre.sistema.service.impl.SubtipoPersonaService" >
+ 		<property name="subtipoPersonaDAO" ref="SubtipoPersonaDAO"/>
+ 	</bean>
+ 
+</beans>

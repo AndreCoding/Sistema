@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href='http://fonts.googleapis.com/css?family=PT+Serif:700'
+		rel='stylesheet' type='text/css'></link>
+</h:head>
+<body>
+
+	<ui:composition template="./layout/layout.xhtml">
+
+		<ui:define name="top">
+
+		</ui:define>
+
+		<ui:define name="content">
+			<h:form id="mantenimientoPersonasForm">
+				<p:panel header="Opciones de Búsqueda" styleClass="panelBusqueda"
+					id="opcionesBusquedaPanel">
+					<h:panelGrid columns="6" id="personaBusqueda">
+						<p:outputLabel value="Codigo" />
+
+						<p:outputLabel value="Documento Identidad" />
+
+						<p:outputLabel value="Nombre/Razon social" />
+
+						<p:outputLabel value="Domicilio" />
+
+						<p:outputLabel value="Todos" />
+
+						<h:panelGroup />
+
+						<p:inputText id="txtCodigo"
+							value="#{personaBusqueda.persona.c0001codpersona}" />
+
+						<p:inputText id="txtDocumentoIdentidad"
+							value="#{personaBusqueda.persona.c0001numero}" />
+
+						<p:inputText id="txtNombreRazonSocial"
+							value="#{personaBusqueda.persona.c0001block}" />
+
+						<p:inputText id="txtDomicilio"
+							value="#{personaBusqueda.persona.c0001dpto}" />
+
+						<p:selectBooleanCheckbox value="#{personaBean.selectTodos}">
+							<p:ajax process="@(.ui-panel :not(input))" update="@(.ui-panel)"
+								listener="#{personaBean.fillList()}" />
+						</p:selectBooleanCheckbox>
+
+						<p:commandButton value="Buscar" ajax="true"
+							action="#{personaBusqueda.buscarPersona()}"
+							update="mantenimientoPersonasForm" />
+
+
+
+
+					</h:panelGrid>
+
+
+					<p:separator styleClass="separador" />
+
+					<p:panel header="Lista Personas" styleClass="panelLista"
+						id="listaPersonasPanel">
+						<p:dataTable paginator="true" var="persona"
+							value="#{personaBean.listaPersonas}" rowIndexVar="rowIndex"
+							rendered="#{not empty personaBean.listaPersonas and personaBean.selectTodos==true}"
+							rows="10"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							resizableColumns="true" rowsPerPageTemplate="5,50,100">
+
+							<p:column headerText="Acciones">
+								<h:panelGrid columns="1">
+									<h:panelGroup>
+										<p:commandButton icon="ui-icon-search" title="Ver" />
+										<p:commandButton icon="ui-icon-close" title="Eliminar" />
+										<p:commandButton icon="ui-icon-person" title="Agregar" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</p:column>
+							<p:column headerText="Codigo">
+								<h:outputLabel value="#{persona.c0001codpersona}" />
+							</p:column>
+							<p:column headerText="Nombre/Razon Social">
+								<h:outputLabel value="#{persona.c0001nombre}" />
+							</p:column>
+							<p:column headerText="Domicilio">
+								<h:outputLabel value="#{persona.c0001manzana}" />
+							</p:column>
+							<p:column headerText="Subtipo Persona">
+									<h:outputText value="#{personaBean.getNombreSubtipo(persona.t0003subtippersona.i0003idsubtippers)}" />
+							</p:column>
+							<!-- 
+							<p:summaryRow>
+								<p:column colspan="3" style="text-align:right">
+									<h:outputLabel value="Total:" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{personaBean.totalRegisters}" />
+								</p:column>
+								
+							</p:summaryRow>
+							 -->
+						</p:dataTable>
+					</p:panel>
+
+				</p:panel>
+				<p:dialog rendered="#{personaBean.selectTodos == false}"
+					widgetVar="dlg1" header="Informacion" modal="true" height="40"
+					draggable="false" resizable="false">
+					<h:outputText value="No hay Registros" />
+				</p:dialog>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()"/>
+
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+					closable="false" resizable="false" showHeader="false">
+					<p:graphicImage value="./resources/img/ajax-loader.gif" />
+				</p:dialog>
+			</h:form>
+		</ui:define>
+
+		<ui:define name="bottom">
+			<div></div>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>
