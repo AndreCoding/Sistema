@@ -62,14 +62,14 @@
 
 					<p:panel header="Lista Personas" styleClass="panelLista"
 						id="listaPersonasPanel">
-						<p:dataTable paginator="true" var="persona"
+						<p:dataTable paginator="true" var="persona" scrollable="true" scrollHeight="280"
 							value="#{personaBean.listaPersonas}" rowIndexVar="rowIndex"
 							rendered="#{not empty personaBean.listaPersonas and personaBean.selectTodos==true}"
 							rows="10"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							resizableColumns="true" rowsPerPageTemplate="5,50,100">
 
-							<p:column headerText="Acciones">
+							<p:column headerText="Acciones" footerText="Acciones">
 								<h:panelGrid columns="1">
 									<h:panelGroup>
 										<p:commandButton icon="ui-icon-search" title="Ver" />
@@ -78,16 +78,16 @@
 									</h:panelGroup>
 								</h:panelGrid>
 							</p:column>
-							<p:column headerText="Codigo">
+							<p:column headerText="Codigo" footerText="Codigo">
 								<h:outputLabel value="#{persona.c0001codpersona}" />
 							</p:column>
-							<p:column headerText="Nombre/Razon Social">
+							<p:column headerText="Nombre/Razon Social" footerText="Nombre/Razon Social">
 								<h:outputLabel value="#{persona.c0001nombre}" />
 							</p:column>
-							<p:column headerText="Domicilio">
+							<p:column headerText="Domicilio" footerText="Domicilio">
 								<h:outputLabel value="#{persona.c0001manzana}" />
 							</p:column>
-							<p:column headerText="Subtipo Persona">
+							<p:column headerText="Subtipo Persona" footerText="Subtipo Persona">
 								<h:outputText
 									value="#{personaBean.getNombreSubtipo(persona.t0003subtippersona.i0003idsubtippers)}" />
 							</p:column>
