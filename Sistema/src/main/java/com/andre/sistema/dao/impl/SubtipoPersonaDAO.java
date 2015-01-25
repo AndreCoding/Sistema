@@ -27,7 +27,6 @@ public class SubtipoPersonaDAO implements ISubtipoPersonaDAO {
 
 
 
-	@Override
 	public List<T0003subtippersona> obtenerTodos() throws Exception {
 		String hql = "from T0003subtippersona";
 		Session session = sessionFactory.openSession();

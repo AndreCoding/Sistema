@@ -30,7 +30,6 @@ public class PersonaService implements IPersonaService {
 
 
 	@Transactional(readOnly=false)
-	@Override
 	public List<T0001personas> getAll() throws Exception{
 		// TODO Auto-generated method stub
 		return personaDAO.getAll();
@@ -38,7 +37,7 @@ public class PersonaService implements IPersonaService {
 
 
 
-	@Override
+
 	public T0001personas getPersona(String codigoPersona) throws Exception {
 		// TODO Auto-generated method stub
 		return personaDAO.getPersona(codigoPersona);

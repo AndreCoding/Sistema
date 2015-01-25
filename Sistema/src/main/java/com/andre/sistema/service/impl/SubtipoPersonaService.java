@@ -22,7 +22,7 @@ public class SubtipoPersonaService implements ISubtipoPersonaService {
 	}
 
 
-	@Override
+
 	public List<T0003subtippersona> getAll() throws Exception {
 		// TODO Auto-generated method stub
 		return subtipoPersonaDAO.obtenerTodos();

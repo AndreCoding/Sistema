@@ -9,13 +9,13 @@ import com.andre.sistema.service.IPaisService;
 public class PaisService  implements IPaisService{
 
 	private IPaisDAO paisDAO;
-	@Override
+	
 	public T0006paises getPaisByCode(int idPais) throws Exception {
 		// TODO Auto-generated method stub
 		return paisDAO.obtenerPaisPorCodigo(idPais);
 	}
 	
-	@Override
+
 	public List<T0006paises> getAll() throws Exception {
 		return paisDAO.obtenerTodo();
 	}

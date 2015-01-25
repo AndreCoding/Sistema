@@ -24,7 +24,7 @@ public class PersonaDAO implements IPersonaDAO {
 	}
 
 
-	@Override
+
 	public List<T0001personas> getAll() throws Exception {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
@@ -34,7 +34,6 @@ public class PersonaDAO implements IPersonaDAO {
 	}
 
 
-	@Override
 	public T0001personas getPersona(String codigoPersona) throws Exception {
 		Session session = sessionFactory.openSession();
 		String hqlQuery = "from T0001personas persona where persona.c0001codpersona =:codigoPersona";

@@ -14,7 +14,7 @@ public class PaisDAO implements IPaisDAO{
 	
 	private SessionFactory sessionFactory;
 
-	@Override
+
 	public T0006paises obtenerPaisPorCodigo(int idPais) throws Exception {
 		
 		String hql = "from T0006paises pais where pais.i0006idpais =:idPais";
@@ -25,8 +25,7 @@ public class PaisDAO implements IPaisDAO{
 		session.close();
 		return paisResult;
 	}
-	
-	@Override
+
 	public List<T0006paises> obtenerTodo() throws Exception {
 		String hql = "from T0006paises";
 		Session session = sessionFactory.openSession();
