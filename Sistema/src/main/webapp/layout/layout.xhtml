@@ -8,27 +8,29 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet name="./css/default.css" />
-	<!-- <link rel="icon" type="image/png" href="/resources/img/icon.png"></link> --> 
-	<link rel="shortcut icon" href="http://localhost:8080/Sistema/resources/img/icon.ico"></link>
-	 
+	<!-- <link rel="icon" type="image/png" href="/resources/img/icon.png"></link> -->
+	<link rel="shortcut icon"
+		href="http://localhost:8080/Sistema/resources/img/icon.ico"></link>
+
 	<title>Mantenimiento de Personas</title>
 </h:head>
-
 <h:body>
+	<div id="todo">
+		<div id="top">
+			<ui:insert name="top">Top</ui:insert>
+			<h1>Mantenimiento de Personas</h1>
+		</div>
+	
+		<div id="content">
+			
+			<ui:insert name="content">Content</ui:insert>
+		
+		</div>
 
-	<div id="top">
-		<ui:insert name="top">Top</ui:insert>
-		<h1>Mantenimiento de Personas</h1>
+		<div id="bottom">
+			<ui:insert name="bottom">Bottom</ui:insert>
+		</div>
 	</div>
-
-	<div id="content">
-		<ui:insert name="content">Content</ui:insert>
-	</div>
-
-	<div id="bottom">
-		<ui:insert name="bottom">Bottom</ui:insert>
-	</div>
-
 </h:body>
 
 </html>

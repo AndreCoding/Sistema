@@ -4,7 +4,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
 	<link href='http://fonts.googleapis.com/css?family=PT+Serif:700'
 		rel='stylesheet' type='text/css'></link>
@@ -12,75 +11,52 @@
 <body>
 
 	<ui:composition template="./layout/layout.xhtml">
-
+	
 		<ui:define name="top">
 
 		</ui:define>
 
 		<ui:define name="content">
 			<h:form id="mantenimientoPersonasForm">
-
-
 				<p:panel header="Opciones de Búsqueda" styleClass="panelBusqueda"
 					id="opcionesBusquedaPanel">
+					<h:panelGrid columns="6" id="personaBusqueda" styleClass="busqueda">
+						<p:outputLabel value="Codigo" />
 
-					
-						
-							<h:panelGrid columns="6" id="personaBusqueda">
+						<p:outputLabel value="Documento Identidad" />
 
-								
-									<p:outputLabel value="Codigo" />
-								
-								
-									<p:outputLabel value="Documento Identidad" />
-								
-								
-									<p:outputLabel value="Nombre/Razon social" />
-								
-							
-									<p:outputLabel value="Domicilio" />
-								
-								
-									<p:outputLabel value="Todos" />
-								
-								
-									<h:panelGroup />
-								
-						
-						
-							
-								<p:inputText id="txtCodigo"
-									value="#{personaBusqueda.persona.c0001codpersona}" />
-							
-							
-								<p:inputText id="txtDocumentoIdentidad"
-									value="#{personaBusqueda.persona.c0001numero}" />
-							
-							
-								<p:inputText id="txtNombreRazonSocial"
-									value="#{personaBusqueda.persona.c0001block}" />
-							
-						
-								<p:inputText id="txtDomicilio"
-									value="#{personaBusqueda.persona.c0001dpto}" />
-							
-						
-								<p:selectBooleanCheckbox value="#{personaBean.selectTodos}">
-									<p:ajax process="@(.ui-panel :not(input))"
-										update="@(.ui-panel)" listener="#{personaBean.fillList()}" />
-								</p:selectBooleanCheckbox>
-						
-						
-								<p:commandButton value="Buscar" ajax="true"
-									action="#{personaBusqueda.buscarPersona()}"
-									update="mantenimientoPersonasForm" />
-							
+						<p:outputLabel value="Nombre/Razon social" />
+
+						<p:outputLabel value="Domicilio" />
+
+						<p:outputLabel value="Todos" />
+
+						<h:panelGroup />
+
+						<p:inputText id="txtCodigo"
+							value="#{personaBusqueda.persona.c0001codpersona}" />
+
+						<p:inputText id="txtDocumentoIdentidad"
+							value="#{personaBusqueda.persona.c0001numero}" />
+
+						<p:inputText id="txtNombreRazonSocial"
+							value="#{personaBusqueda.persona.c0001block}" />
+
+						<p:inputText id="txtDomicilio"
+							value="#{personaBusqueda.persona.c0001dpto}" />
+
+						<p:selectBooleanCheckbox value="#{personaBean.selectTodos}">
+							<p:ajax process="@(.ui-panel :not(input))" update="@(.ui-panel)"
+								listener="#{personaBean.fillList()}" />
+						</p:selectBooleanCheckbox>
 
 
-						
-						</h:panelGrid>
+						<p:commandButton value="Buscar" ajax="true"
+							action="#{personaBusqueda.buscarPersona()}"
+							update="mantenimientoPersonasForm" />
 
-					
+					</h:panelGrid>
+
 
 					<p:separator styleClass="separador" />
 
@@ -130,7 +106,6 @@
 					</p:panel>
 
 				</p:panel>
-				
 				<p:dialog rendered="#{personaBean.selectTodos == false}"
 					widgetVar="dlg1" header="Informacion" modal="true" height="40"
 					draggable="false" resizable="false">
