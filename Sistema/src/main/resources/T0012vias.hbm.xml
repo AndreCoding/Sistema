@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2015 11:17:25 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.andre.sistema.domain.T0012vias" table="t0012vias" schema="public">
+        <id name="c0012codvia" type="string">
+            <column name="c0012codvia" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="c0012nombre" type="string">
+            <column name="c0012nombre" length="70" not-null="true" />
+        </property>
+        <property name="i0012idtipovia" type="short">
+            <column name="i0012idtipovia" not-null="true" />
+        </property>
+        <property name="c0012usuario" type="string">
+            <column name="c0012usuario" length="35" not-null="true">
+                <comment>Usuario del sistema</comment>
+            </column>
+        </property>
+        <property name="d0012fecha" type="timestamp">
+            <column name="d0012fecha" length="29" not-null="true">
+                <comment>Fecha de Registro</comment>
+            </column>
+        </property>
+        <property name="c0012pc" type="string">
+            <column name="c0012pc" length="50" not-null="true">
+                <comment>Nombre de PC</comment>
+            </column>
+        </property>
+        <property name="c0012ip" type="string">
+            <column name="c0012ip" length="20" not-null="true">
+                <comment>IP</comment>
+            </column>
+        </property>
+        <property name="b0012estado" type="boolean">
+            <column name="b0012estado" not-null="true">
+                <comment>Estado</comment>
+            </column>
+        </property>
+        <property name="cusuarioMod" type="string">
+            <column name="cusuarioMod" length="35">
+                <comment>Usuario que modifica</comment>
+            </column>
+        </property>
+        <property name="cobservacion" type="string">
+            <column name="cobservacion" length="100" />
+        </property>
+        <property name="cipMod" type="string">
+            <column name="cipMod" length="30">
+                <comment>IP de la modificacion</comment>
+            </column>
+        </property>
+        <set name="t0017personasdomicilioses" table="t0017personasdomicilios" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="c0017codvia" length="5" not-null="true" />
+            </key>
+            <one-to-many class="com.andre.sistema.domain.T0017personasdomicilios" />
+        </set>
+    </class>
+</hibernate-mapping>

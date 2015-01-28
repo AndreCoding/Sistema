@@ -8,12 +8,12 @@
             <column name="c0001codpersona" length="7" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="t0003subtippersona" class="com.andre.sistema.domain.T0003subtippersona" fetch="select">
+        <many-to-one name="t0003subtippersona" class="com.andre.sistema.domain.T0003subtippersona" fetch="select" lazy="false">
             <column name="i0001subtippers" not-null="true">
                 <comment>Sub Tipo de Persona (Gobierno, Entidad Religiosa,etc)</comment>
             </column>
         </many-to-one>
-        <many-to-one name="t0006paises" class="com.andre.sistema.domain.T0006paises" fetch="select">
+        <many-to-one name="t0006paises" class="com.andre.sistema.domain.T0006paises" fetch="select" lazy="false">
             <column name="i0001idpais" not-null="true">
                 <comment>Pais de origen</comment>
             </column>

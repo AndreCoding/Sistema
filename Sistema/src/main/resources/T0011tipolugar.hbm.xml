@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/01/2015 11:17:25 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.andre.sistema.domain.T0011tipolugar" table="t0011tipolugar" schema="public">
+        <id name="i0011idtiplugar" type="short">
+            <column name="i0011idtiplugar" />
+            <generator class="assigned" />
+        </id>
+        <property name="c0011nombre" type="string">
+            <column name="c0011nombre" length="50" not-null="true">
+                <comment>Nombre del tipo de Lugar</comment>
+            </column>
+        </property>
+        <property name="c0011abrev" type="string">
+            <column name="c0011abrev" length="10" not-null="true">
+                <comment>Abreviatura</comment>
+            </column>
+        </property>
+        <property name="c0011usuario" type="string">
+            <column name="c0011usuario" length="35" not-null="true">
+                <comment>Usuario del sistema</comment>
+            </column>
+        </property>
+        <property name="d0011fecha" type="timestamp">
+            <column name="d0011fecha" length="29" not-null="true">
+                <comment>Fecha de Registro</comment>
+            </column>
+        </property>
+        <property name="c0011pc" type="string">
+            <column name="c0011pc" length="50" not-null="true">
+                <comment>Nombre de PC</comment>
+            </column>
+        </property>
+        <property name="c0011ip" type="string">
+            <column name="c0011ip" length="20" not-null="true">
+                <comment>IP</comment>
+            </column>
+        </property>
+        <property name="b0011estado" type="boolean">
+            <column name="b0011estado" not-null="true">
+                <comment>Estado</comment>
+            </column>
+        </property>
+        <property name="cusuarioMod" type="string">
+            <column name="cusuarioMod" length="35">
+                <comment>Usuario que modifica</comment>
+            </column>
+        </property>
+        <property name="cobservacion" type="string">
+            <column name="cobservacion" length="35" />
+        </property>
+        <property name="cipMod" type="string">
+            <column name="cipMod" length="20">
+                <comment>IP de la modificacion</comment>
+            </column>
+        </property>
+        <set name="t0008lugareses" table="t0008lugares" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="i0008idtiplugar" not-null="true">
+                    <comment>Tipo de Lugar (AH, APV, etc)</comment>
+                </column>
+            </key>
+            <one-to-many class="com.andre.sistema.domain.T0008lugares" />
+        </set>
+    </class>
+</hibernate-mapping>

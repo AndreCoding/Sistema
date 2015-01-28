@@ -43,6 +43,10 @@
 				<value>T0002tipopersona.hbm.xml</value>
 				<value>T0003subtippersona.hbm.xml</value>
 				<value>T0006paises.hbm.xml</value>
+				<value>T0008lugares.hbm.xml</value>
+				<value>T0011tipolugar.hbm.xml</value>
+				<value>T0012vias.hbm.xml</value>
+				<value>T0017personasdomicilios.hbm.xml</value>
 			</list>
 		</property>
 		 <property name="configLocation">
