@@ -14,6 +14,8 @@ import org.primefaces.context.RequestContext;
 import com.andre.sistema.domain.T0001personas;
 import com.andre.sistema.domain.T0003subtippersona;
 import com.andre.sistema.domain.T0006paises;
+import com.andre.sistema.domain.T0017personasdomicilios;
+import com.andre.sistema.service.IDomicilioService;
 import com.andre.sistema.service.IPaisService;
 import com.andre.sistema.service.IPersonaService;
 import com.andre.sistema.service.ISubtipoPersonaService;
@@ -35,6 +37,10 @@ public class PersonaBean implements Serializable {
 	private IPaisService paisService;
 	@ManagedProperty(value="#{SubtipoPersonaService}")
 	private ISubtipoPersonaService subtipoPersonaService;
+	@ManagedProperty(value="#{DomicilioService}")
+	private IDomicilioService domicilioService;
+	
+	private List<String> listaDomicilios;
 
 	private List<T0001personas> listaPersonas;
 
@@ -55,11 +61,15 @@ public class PersonaBean implements Serializable {
 		// persona = new T0001personas();
 		listaPersonas = new ArrayList<T0001personas>();
 		listaPaises = new ArrayList<T0006paises>();
+		
 		listaSubtipoPersonas = new ArrayList<T0003subtippersona>();
+		listaDomicilios = new ArrayList<String>();
 		
 		try{
 			listaPaises = paisService.getAll();
 			listaSubtipoPersonas = subtipoPersonaService.getAll();
+			
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -83,6 +93,10 @@ public class PersonaBean implements Serializable {
 			} else {
 				listaPersonas = personaService.getAll();
 				System.out.println(listaPersonas.size());
+				for(T0001personas persona : listaPersonas){
+					listaDomicilios.add(domicilioService.getDomicilioByCode(persona.getC0001codpersona()));
+					
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,6 +140,15 @@ public class PersonaBean implements Serializable {
 	}
 
 	
+	public String getDomicilio(int index){
+		try{
+			return listaDomicilios.get(index);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return "";
+		}
+	}
 
 	public boolean isSelectTodos() {
 		return selectTodos;
@@ -188,6 +211,23 @@ public class PersonaBean implements Serializable {
 			List<T0003subtippersona> listaSubtipoPersonas) {
 		this.listaSubtipoPersonas = listaSubtipoPersonas;
 	}
+
+	public IDomicilioService getDomicilioService() {
+		return domicilioService;
+	}
+
+	public void setDomicilioService(IDomicilioService domicilioService) {
+		this.domicilioService = domicilioService;
+	}
+
+	public List<String> getListaDomicilios() {
+		return listaDomicilios;
+	}
+
+	public void setListaDomicilios(List<String> listaDomicilios) {
+		this.listaDomicilios = listaDomicilios;
+	}
+
 
 	
 	

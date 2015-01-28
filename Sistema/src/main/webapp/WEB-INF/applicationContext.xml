@@ -68,11 +68,13 @@
 	<bean id="Persona" class="com.andre.sistema.domain.T0001personas" />
 	<bean id="Pais" class="com.andre.sistema.domain.T0006paises" />
 	<bean id="SubtipoPersona" class="com.andre.sistema.domain.T0003subtippersona"/>
-	
+	<bean id="DomicilioPersona" class="com.andre.sistema.domain.T0017personasdomicilios"/>
+	<bean id="TipoLugar" class="com.andre.sistema.domain.T0011tipolugar"/>
 	<!-- Persona DAO  Beans -->
 	<bean id="PersonaDAO" class="com.andre.sistema.dao.impl.PersonaDAO">
 		<property name="sessionFactory" ref="SessionFactory"/>
 	</bean>
+	
 	<!-- SubtipoPersona DAO Beans -->
 	<bean id="SubtipoPersonaDAO" class="com.andre.sistema.dao.impl.SubtipoPersonaDAO" >
 		<property name="sessionFactory" ref="SessionFactory" />
@@ -82,9 +84,20 @@
 		<property name="sessionFactory" ref="SessionFactory"></property>
 	</bean>
 	
+	<!-- DomicilioDAO -->
+	<bean id="DomicilioDAO" class="com.andre.sistema.dao.impl.DomicioDAO">
+		<property name="sessionFactory" ref="SessionFactory"/>
+	</bean>
+	
+	
 	<!--Persona Service Beans -->
 	<bean id="PersonaService" class="com.andre.sistema.service.impl.PersonaService">
 		<property name="personaDAO" ref="PersonaDAO"/>
+	</bean>
+	
+	<!-- Domicilio Service -->
+	<bean id="DomicilioService" class="com.andre.sistema.service.impl.DomicilioService">
+		<property name="domicilioDAO" ref="DomicilioDAO"/>
 	</bean>
 	
 	<!-- Pais Service Beans -->
